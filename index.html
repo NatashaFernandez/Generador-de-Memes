@@ -11,12 +11,48 @@
     <link rel="stylesheet" href="/Assets/Css/styles.css">
 </head>
 <body class="DarkTheme">
-    <!--App Header>
-    <header class=App-Header-->
+    <!--App Header y Toggle btns-->
+    <header class=App-Header>
         <h1 class="App-Title">Generador de Memes</h1>
+        <!--Toggle Btns-->
+        <nav class="App-Nav">
+            <button class="btn" id="Img-Panel-TogglerBtn" aria-label="Abrir panel de Imagen">
+                <i class="fas fa-file-image btn-Icon" aria-hidden="true"></i>Imagen
+            </button>
+            <button class="btn" id="Text-Panel-TogglerBtn" aria-label="Abrir panel de Texto">
+                <i class="fas fa-font btn-Icon" aria-hidden="true"></i>Texto
+            </button>
+            <button class="btn" id="App-Theme-TogglerBtn" aria-label="Cambiar a modo oscuro">
+                <i class="far fa-lightbulb btn-Icon" aria-hidden="true"></i>Modo oscuro
+            </button>
+        </nav>
     </header>
-    <main><main>
-    <aside></aside>
+    <!--Meme Canvas y btn descarga-->
+    <main class="App-Body">
+        <div class="App-Canvas">
+            <div class="App-Canvas-TopText"></div>
+            <div class="App-Canvas-Image"></div>
+            <div class="App-Canvas-BottomText"></div>
+        </div>
+        <!-- Descargar meme-->
+        <button type="button" class="btn btn-primary" id="DownloadMeme-btn">
+            <i class="fas fa-download btn-Icon" aria-hidden="true"></i>Descargar meme
+        </button>
+    </main>
+    <!-- Paneles de ajustes-->
+    <aside class="App-Sidebar ">
+        <!--Cerrar panel-->
+        <button class="btn App-Sidebar-CloseBtn" aria-label="Cerrar panel">x</button>
+        <!--Ajustes de la Imagen-->
+        <section class="App-Sidebar-Panel" id="Img-Panel">
+            <h2 class="Panel-title">Imagen</h2>
+            <button class="btn">Restalecer filtros</button>
+        </section>
+        <!--Ajustes del Texto-->
+        <section class="App-Sidebar-Panel" id="Text-Panel">
+            <h2 class="Panel-title">Texto</h2>
+        </section>
+    </aside>
     <script src="Assets/Scripts/main.js"></script>
 </body>
 </html>
