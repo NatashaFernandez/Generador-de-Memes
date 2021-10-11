@@ -1,0 +1,36 @@
+:root{
+  --App-Font: "Segoe UI", sans-serif;
+  --App-BorderRadius: 3px;
+
+  /*-----------DEFAULT THEME --------------------------*/
+  --Theme-TextColor: black;
+  --Theme-AppBgColor: #d8d8d8;
+  --Theme-BgColor: white;
+  --Theme-BgColor--OnHover: #b6b6b6;
+  --Theme-BgColor--OnActive: #a7a7a7;
+}
+/*------------DARK THEME ------------------------------*/
+body.DarkTheme{
+  --Theme-TextColor: #fafafa;
+  --Theme-AppBgColor: #363636;
+  --Theme-BgColor: #1a1a1a;
+  --Theme-BgColor--OnHover: #5c5c5c;
+  --Theme-BgColor--OnActive: #696969;
+}
+/* ------------- RESETS ------------------------------ */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body, h1, h2, h3, h4, h5, h6, p{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: var(--App-Font);
+  min-width: 300px;
+  background-color: var(--Theme-AppBgColor);
+}
