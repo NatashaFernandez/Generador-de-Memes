@@ -1,10 +1,13 @@
 :root{
+  /*-----------DEFAULT THEME --------------------------*/
   --App-Font: "Segoe UI", sans-serif;
   --App-BorderRadius: 3px;
-
-  /*-----------DEFAULT THEME --------------------------*/
+  --App-PrimaryBtn-BgColor: #3aa03f;
+  --App-PrimaryBtn-Color: white;
+  /*-----------LIGHT THEME-----------------------------*/
   --Theme-TextColor: black;
   --Theme-AppBgColor: #d8d8d8;
+  --Theme-AppSidebarBgColor: #bbb7b7;
   --Theme-BgColor: white;
   --Theme-BgColor--OnHover: #b6b6b6;
   --Theme-BgColor--OnActive: #a7a7a7;
@@ -13,6 +16,7 @@
 body.DarkTheme{
   --Theme-TextColor: #fafafa;
   --Theme-AppBgColor: #363636;
+  --Theme-AppSidebarBgColor: #505050;
   --Theme-BgColor: #1a1a1a;
   --Theme-BgColor--OnHover: #5c5c5c;
   --Theme-BgColor--OnActive: #696969;
@@ -33,4 +37,111 @@ body{
   font-family: var(--App-Font);
   min-width: 300px;
   background-color: var(--Theme-AppBgColor);
+}
+/* --------------HEADER ------------------------------ */
+.App-Header{
+  color: var(--Theme-TextColor);
+  background-color: var(--Theme-BgColor);
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.App-Title{
+  font-weight: 700;
+  font-size: calc(1.3em + 1vw);
+  margin-bottom: 10px;
+}
+/*---------------BUTTONS ----------------------------- */
+.btn{
+  color: var(--Theme-TextColor);
+  background-color: var(--Theme-BgColor);
+  padding: .5rem .7rem;
+
+  border: none;
+  border-radius: var(--App-BorderRadius);
+
+  transition: background-color 0.3s;
+}
+.btn-Icon{
+  margin-right: 5px;
+}
+.btn:not(.btn--Active, .btn-primary):hover{
+  background-color: var(--Theme-BgColor--OnHover);
+}
+.btn--Active{
+  background-color: var(--Theme-BgColor--OnActive);
+}
+.btn-primary{
+  background-color: #2e7d32;
+  color: #fff;
+}
+.btn-primary:hover{
+  background-color: var(--App-PrimaryBtn-BgColor);
+}
+.App-Sidebar-CloseBtn{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border-radius: 50%;
+}
+.App-Sidebar-CloseBtn:hover{
+  background-color: #818181;
+  border-radius: 50%;
+}
+#DownloadMeme-btn{
+  align-self: center;
+  height: 30px;
+  width: 150px;
+}
+/*----------- SIDEBAR --------------------------------*/
+.App-Sidebar{
+
+  background-color: var(--Theme-AppSidebarBgColor);
+  
+  height: 100%;
+  width: 300px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.d-none{
+  display: none;
+}
+/*---------- SIDEBAR PANEL ---------------------------*/
+.App-Sidebar-Panel{
+  height: inherit;
+}
+
+.Panel-title
+{
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--Theme-BgColor);
+  color: var(--Theme-TextColor);
+  text-align: center;
+  margin-bottom: 10px;
+}
+/*------------ BODY --------------------------------- */
+.App-Body{
+  display: flex;
+  height: calc(100vh - 150px);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-color: var(--Theme-AppBgColor);
+  padding: 0 20px;
+}
+/*----------- CANVAS ---------------------------------*/
+.App-Canvas{
+  margin: 10px auto;
+  width: 100%;
+  height: 100%;
+  max-width: 610px;
+  background-color: rgb(199, 255, 44);
 }
