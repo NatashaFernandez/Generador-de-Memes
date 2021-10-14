@@ -7,19 +7,21 @@
   /*-----------LIGHT THEME-----------------------------*/
   --Theme-TextColor: black;
   --Theme-AppBgColor: #d8d8d8;
-  --Theme-AppSidebarBgColor: #bbb7b7;
+  --Theme-AppSidebarBgColor: #5c5151;
   --Theme-BgColor: white;
   --Theme-BgColor--OnHover: #b6b6b6;
   --Theme-BgColor--OnActive: #a7a7a7;
+  --Theme-CtrlBgColor: #cfcfcf;
 }
 /*------------DARK THEME ------------------------------*/
 body.DarkTheme{
   --Theme-TextColor: #fafafa;
-  --Theme-AppBgColor: #363636;
-  --Theme-AppSidebarBgColor: #505050;
-  --Theme-BgColor: #1a1a1a;
-  --Theme-BgColor--OnHover: #5c5c5c;
+  --Theme-AppBgColor: #171f23;
+  --Theme-AppSidebarBgColor: #030308;
+  --Theme-BgColor: #0d111a;
+  --Theme-BgColor--OnHover: #303a48;
   --Theme-BgColor--OnActive: #696969;
+  --Theme-CtrlBgColor: #222431;
 }
 /* ------------- RESETS ------------------------------ */
 html {
@@ -82,9 +84,11 @@ body{
   background-color: var(--App-PrimaryBtn-BgColor);
 }
 .App-Sidebar-CloseBtn{
+  z-index: 999;
   position: fixed;
   top: 10px;
-  right: 10px;
+  right: 270px;
+  padding: 7px 8px;
   background-color: transparent;
   border-radius: 50%;
 }
@@ -99,33 +103,158 @@ body{
 }
 /*----------- SIDEBAR --------------------------------*/
 .App-Sidebar{
-
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
   background-color: var(--Theme-AppSidebarBgColor);
-  
   height: 100%;
-  width: 300px;
+  width: 310px;
   padding: 10px;
   position: fixed;
   top: 0;
   right: 0;
 }
+.App-Sidebar::-webkit-scrollbar{
+  background-color: var(--Theme-AppSidebarBgColor);
+  width: 5px;
+}
+.App-Sidebar::-webkit-scrollbar-thumb{
+  background-color: var(--Theme-CtrlBgColor);
+}
 .d-none{
   display: none;
 }
-/*---------- SIDEBAR PANEL ---------------------------*/
+
+/*---------- SIDEBAR PANEL CONTROLS --------------------*/
 .App-Sidebar-Panel{
-  height: inherit;
+  padding-top: 50px;
+}
+
+.Panel-title, .App-Sidebar-Panel label, .App-Sidebar-Panel .Panel-ctrl-option{
+  color: var(--Theme-TextColor);
+  user-select: none;
 }
 
 .Panel-title
 {
   font-size: 1.5rem;
-  padding-bottom: 10px;
+  position: fixed;
+  top:10px;
+  margin: -10px;
+  padding: 10px;
+  width: 305px;
   font-weight: 600;
+  background-color: var(--Theme-BgColor);
   border-bottom: 1px solid var(--Theme-BgColor);
-  color: var(--Theme-TextColor);
   text-align: center;
   margin-bottom: 10px;
+}
+
+
+.Panel-ctrls .btn{
+
+  background-color: var(--Theme-CtrlBgColor);
+}
+
+.width-for-2>.Panel-ctrl,
+.width-for-2>.Panel-ctrls{
+  width: calc(100%/2 - 10px/2);
+}
+
+.width-for-3>button{
+  width: calc(100%/3 - 10px/3);
+}
+
+.Panel-ctrl{
+  width: 100%;
+  margin-bottom: .9em;
+}
+
+.Panel-ctrls{
+  display: flex;
+  width: -webkit-fill-available;
+  gap: 10px;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: .9em;
+}
+.Panel-ctrl-title{
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: .9em;
+}
+.Panel-ctrl-option{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: calc(.9em/2) 0;
+}
+.Panel-ctrl-option span
+{
+  display: block;
+}
+
+input[type='checkbox'] {
+  width: inherit;
+  margin: 0;
+  margin-right: 10px;
+}
+input,
+textarea,
+select,
+.color{
+  outline: none;
+  height: 31px;
+  width: inherit;
+  padding: 4px 6px;
+  border: none;
+  background-color: var(--Theme-CtrlBgColor);
+  border-radius: var(--App-BorderRadius);
+  color: var(--Theme-TextColor);
+}
+
+input:hover,
+textarea:hover,
+select:hover{
+  background-color: var(--Theme-BgColor--OnHover);
+}
+input:focus,
+textarea:focus,
+select:focus{
+  background-color: var(--Theme-BgColor--OnHover);
+}
+
+input[type="color"]{
+  padding: 4px 6px;
+  height: 36px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  margin: 0;
+  padding: 2px;
+
+  height: 28px;
+  width: 28px;
+}
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 50px;
+  border: none;
+}
+div.color{
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+#selected-bgtext-color, #selected-text-color{
+  position: absolute;
+  left: 50px;
+}
+
+.Panel-ctrls + .Panel-ctrl-option{
+  margin-top: calc(.9em * -1);
 }
 /*------------ BODY --------------------------------- */
 .App-Body{
