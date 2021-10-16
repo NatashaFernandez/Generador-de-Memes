@@ -1,7 +1,7 @@
 :root{
   /*-----------DEFAULT THEME --------------------------*/
   --App-Font: "Segoe UI", sans-serif;
-  --App-BorderRadius: 3px;
+  --App-BorderRadius: 4px;
   --App-PrimaryBtn-BgColor: #3aa03f;
   --App-PrimaryBtn-Color: white;
   /*-----------LIGHT THEME-----------------------------*/
@@ -32,6 +32,7 @@ html {
   box-sizing: inherit;
 }
 body, h1, h2, h3, h4, h5, h6, p{
+  color: var(--Theme-TextColor);
   margin: 0;
   padding: 0;
 }
@@ -61,8 +62,9 @@ body{
   color: var(--Theme-TextColor);
   background-color: var(--Theme-BgColor);
   padding: .5rem .7rem;
+  height: 36px;
 
-  border: none;
+  border: 1px solid  #ffffff1a;
   border-radius: var(--App-BorderRadius);
 
   transition: background-color 0.3s;
@@ -84,11 +86,12 @@ body{
   background-color: var(--App-PrimaryBtn-BgColor);
 }
 .App-Sidebar-CloseBtn{
+
+  border: none;
   z-index: 999;
   position: fixed;
-  top: 10px;
+  top: 7px;
   right: 270px;
-  padding: 7px 8px;
   background-color: transparent;
   border-radius: 50%;
 }
@@ -98,7 +101,7 @@ body{
 }
 #DownloadMeme-btn{
   align-self: center;
-  height: 30px;
+  height: 36px;
   width: 150px;
 }
 /*----------- SIDEBAR --------------------------------*/
@@ -113,13 +116,16 @@ body{
   position: fixed;
   top: 0;
   right: 0;
+  user-select: none;
+  border: 1px solid  #ffffff1a;
+  border-right: none;
 }
 .App-Sidebar::-webkit-scrollbar{
-  background-color: var(--Theme-AppSidebarBgColor);
-  width: 5px;
+  background-color: var(--Theme-CtrlBgColor);
+  width:9px;
 }
 .App-Sidebar::-webkit-scrollbar-thumb{
-  background-color: var(--Theme-CtrlBgColor);
+  background-color: var(--Theme-BgColor--OnHover);
 }
 .d-none{
   display: none;
@@ -138,11 +144,12 @@ body{
 .Panel-title
 {
   font-size: 1.5rem;
+  z-index: 3;
   position: fixed;
   top:10px;
   margin: -10px;
   padding: 10px;
-  width: 305px;
+  width: 300px;
   font-weight: 600;
   background-color: var(--Theme-BgColor);
   border-bottom: 1px solid var(--Theme-BgColor);
@@ -150,9 +157,7 @@ body{
   margin-bottom: 10px;
 }
 
-
 .Panel-ctrls .btn{
-
   background-color: var(--Theme-CtrlBgColor);
 }
 
@@ -165,7 +170,7 @@ body{
   width: calc(100%/3 - 10px/3);
 }
 
-.Panel-ctrl{
+.Panel-ctrl, .Panel-ctrl-slider{
   width: 100%;
   margin-bottom: .9em;
 }
@@ -180,11 +185,17 @@ body{
   flex-wrap: nowrap;
   margin-bottom: .9em;
 }
+
+.v-none{
+  visibility: hidden;
+}
+
 .Panel-ctrl-title{
   display: block;
   text-transform: uppercase;
   margin-bottom: .9em;
 }
+
 .Panel-ctrl-option{
   display: flex;
   flex-direction: row;
@@ -192,8 +203,7 @@ body{
   align-items: center;
   margin: calc(.9em/2) 0;
 }
-.Panel-ctrl-option span
-{
+.Panel-ctrl-option span{
   display: block;
 }
 
@@ -202,15 +212,16 @@ input[type='checkbox'] {
   margin: 0;
   margin-right: 10px;
 }
+
 input,
 textarea,
 select,
 .color{
   outline: none;
-  height: 31px;
+  height: 36px;
   width: inherit;
   padding: 4px 6px;
-  border: none;
+  border: 1px solid  #ffffff1a;
   background-color: var(--Theme-CtrlBgColor);
   border-radius: var(--App-BorderRadius);
   color: var(--Theme-TextColor);
@@ -225,6 +236,48 @@ input:focus,
 textarea:focus,
 select:focus{
   background-color: var(--Theme-BgColor--OnHover);
+}
+
+.Panel-ctrl-slider{
+  position: relative;
+}
+
+.Panel-ctrl-slider .bar{
+  position: absolute;
+  z-index: 1;
+  left: 2px;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background-color: var(--Theme-BgColor);
+  overflow: hidden;
+}
+
+.Panel-ctrl-slider .bar .fill{
+  display: block;
+  width: 10%;
+  height: 100%;
+  background-color: var(--Theme-BgColor--OnActive);
+}
+
+input[id$="-slider"]{
+  height: 5px;
+  z-index: 2;
+  position: relative;
+  top: -7px;
+  border:none;
+  appearance: none;
+  background-color: transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: var(--Theme-BgColor--OnActive);
+  cursor: pointer;
+	transition: .3s ease-in-out;
 }
 
 input[type="color"]{
@@ -248,9 +301,11 @@ div.color{
   align-items: center;
   padding: 0;
 }
-#selected-bgtext-color, #selected-text-color{
+#selected-bgtext-color, #selected-text-color, #selected-blendmode-color{
+  font-size: .85rem;
   position: absolute;
-  left: 50px;
+  left: 55px;
+  z-index: 0;
 }
 
 .Panel-ctrls + .Panel-ctrl-option{

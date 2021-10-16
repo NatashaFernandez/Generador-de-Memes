@@ -46,12 +46,86 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         <!--Ajustes de la Imagen-->
-        <section class="App-Sidebar-Panel d-none" id="Img-Panel">
+        <section class="App-Sidebar-Panel" id="Img-Panel">
             <h2 class="Panel-title">Imagen</h2>
+            <div class="Panel-ctrl">
+                <label class="Panel-ctrl-title">URL</label>
+                <input type="text" name="input-url">
+            </div>
+            <div class="Panel-ctrl">
+                <div class="Panel-ctrls">
+                    <div class="Panel-ctrl">
+                        <label class="Panel-ctrl-title">Fondo</label>
+                        <div class="color">
+                            <input type="color" value="#FFFFFF">
+                            <span id="selected-blendmode-color" aria-hidden="true">#FFFFFF</span>
+                        </div>
+                    </div>
+                    <div class="Panel-ctrl">
+                        <label class="Panel-ctrl-title v-none">Mezcla</label>
+                        <select aria-label="Modo de mezcla de fondo de imagen" id="selected-blend-mode" >
+                            <option value="unset">Ninguno</option>
+                            <option value="lighten">Aclarar</option>
+                            <option value="darken">Oscurecer</option>
+                            <option value="difference">Diferencia</option>
+                            <option value="luminosity">Luminosidad</option>
+                            <option value="multiply">Multiplicar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="Panel-ctrl">
+                <h3 class="Panel-ctrl-title">FILTROS</h3>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="brightness-slider">BRILLO</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="brightness-slider" min="0" max="1" value="1" step="0.1">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="opacity-slider">OPACIDAD</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="opacity-slider" min="0" max="1" value="1" step="0.1">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="contrast-slider">CONTRASTE</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="contrast-slider" min="100" max="1000" value="100">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="blur-slider">DESENFOQUE</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="blur-slider" min="0" max="10" value="0" step="0.1">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="grayscale-slider">ESCALA DE GRISES</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="grayscale-slider" min="0" max="100" value="0">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="sepia-slider">SEPIA</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="sepia-slider" min="0" max="100" value="0">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="hue-slider">HUE</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="hue-slider" min="0" max="360" value="0">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="saturaste-slider">SATURADO</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="saturate-slider" min="100" max="1000" value="100" step="10">
+                </div>
+                <div class="Panel-ctrl-slider">
+                  <label class="Panel-ctrl-title" for="invert-slider">NEGATIVO</label>
+                  <span class="bar"><span class="fill"></span></span>
+                  <input type="range" id="invert-slider" min="0" max="1" value="0" step="0.1">
+                </div>
+              </div>
             <button class="btn">Restalecer filtros</button>
         </section>
         <!--Ajustes del Texto-->
-        <section class="App-Sidebar-Panel" id="Text-Panel">
+        <section class="App-Sidebar-Panel  d-none" id="Text-Panel">
             <h2 class="Panel-title">Texto</h2>
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">superior</label>
