@@ -7,7 +7,7 @@
   /*-----------LIGHT THEME-----------------------------*/
   --Theme-TextColor: black;
   --Theme-AppBgColor: #d8d8d8;
-  --Theme-AppSidebarBgColor: #5c5151;
+  --Theme-AppSidebarBgColor: #f6f6f6;
   --Theme-BgColor: white;
   --Theme-BgColor--OnHover: #b6b6b6;
   --Theme-BgColor--OnActive: #a7a7a7;
@@ -85,18 +85,18 @@ body{
 .btn-primary:hover{
   background-color: var(--App-PrimaryBtn-BgColor);
 }
-.App-Sidebar-CloseBtn{
+#App-Sidebar-CloseBtn{
 
   border: none;
-  z-index: 999;
+  z-index: 4;
   position: fixed;
   top: 7px;
   right: 270px;
   background-color: transparent;
   border-radius: 50%;
 }
-.App-Sidebar-CloseBtn:hover{
-  background-color: #818181;
+#App-Sidebar-CloseBtn:hover{
+  background-color: var(--Theme-AppBgColor);
   border-radius: 50%;
 }
 #DownloadMeme-btn{
@@ -116,7 +116,7 @@ body{
   position: fixed;
   top: 0;
   right: 0;
-  user-select: none;
+  /* user-select: none; */
   border: 1px solid  #ffffff1a;
   border-right: none;
 }
@@ -136,7 +136,8 @@ body{
   padding-top: 50px;
 }
 
-.Panel-title, .App-Sidebar-Panel label, .App-Sidebar-Panel .Panel-ctrl-option{
+.Panel-title, .App-Sidebar-Panel label,
+.App-Sidebar-Panel .Panel-ctrl-option{
   color: var(--Theme-TextColor);
   user-select: none;
 }
@@ -260,6 +261,14 @@ select:focus{
   background-color: var(--Theme-BgColor--OnActive);
 }
 
+.Panel-ctrl-slider-value{
+  position: absolute;
+  right: 0;
+  top: 0px;
+  font-size: .9rem;
+  color: grey;
+}
+
 input[id$="-slider"]{
   height: 5px;
   z-index: 2;
@@ -297,17 +306,19 @@ input[type="color"]::-webkit-color-swatch {
   border: none;
 }
 div.color{
-  display: flex;
-  align-items: center;
   padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
 }
-#selected-bgtext-color, #selected-text-color, #selected-blendmode-color{
+#selected-bgtext-color,
+#selected-text-color,
+#selected-blendmode-color{
   font-size: .85rem;
   position: absolute;
-  left: 55px;
   z-index: 0;
+  transform: translateX(45px);
 }
-
 .Panel-ctrls + .Panel-ctrl-option{
   margin-top: calc(.9em * -1);
 }

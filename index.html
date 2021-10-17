@@ -22,8 +22,8 @@
             <button class="btn" id="Text-Panel-TogglerBtn" aria-label="Abrir panel de Texto">
                 <i class="fas fa-font btn-Icon" aria-hidden="true"></i>Texto
             </button>
-            <button class="btn" id="App-Theme-TogglerBtn" aria-label="Cambiar a modo oscuro">
-                <i class="far fa-lightbulb btn-Icon" aria-hidden="true"></i>Modo oscuro
+            <button class="btn" id="App-Theme-TogglerBtn" aria-label="Cambiar a modo claro">
+                <i class="far fa-lightbulb btn-Icon" aria-hidden="true"></i>Modo claro
             </button>
         </nav>
     </header>
@@ -31,7 +31,7 @@
     <main class="App-Body">
         <div class="App-Canvas">
             <div class="App-Canvas-TopText"></div>
-            <div class="App-Canvas-Image"></div>
+            <div class="App-Canvas-Image" src="" alt="" aria-label="Imagen de meme"></div>
             <div class="App-Canvas-BottomText"></div>
         </div>
         <!-- Descargar meme-->
@@ -40,24 +40,26 @@
         </button>
     </main>
     <!-- Paneles de ajustes-->
-    <aside class="App-Sidebar ">
+    <aside class="App-Sidebar">
         <!--Cerrar panel-->
-        <button class="btn App-Sidebar-CloseBtn" aria-label="Cerrar panel">
-            <i class="fas fa-arrow-left"></i>
+        <button class="btn" id="App-Sidebar-CloseBtn" aria-label="Cerrar panel">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
         </button>
         <!--Ajustes de la Imagen-->
         <section class="App-Sidebar-Panel" id="Img-Panel">
             <h2 class="Panel-title">Imagen</h2>
+            <!-- URL Imagen-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">URL</label>
                 <input type="text" name="input-url">
             </div>
+            <!-- Fondo y modo de mezcla-->
             <div class="Panel-ctrl">
                 <div class="Panel-ctrls">
                     <div class="Panel-ctrl">
                         <label class="Panel-ctrl-title">Fondo</label>
                         <div class="color">
-                            <input type="color" value="#FFFFFF">
+                            <input type="color" value="#FFFFFF" data-info="#selected-blendmode-color">
                             <span id="selected-blendmode-color" aria-hidden="true">#FFFFFF</span>
                         </div>
                     </div>
@@ -74,59 +76,70 @@
                     </div>
                 </div>
             </div>
+            <!-- Slider para filtros de imagen-->
             <div class="Panel-ctrl">
                 <h3 class="Panel-ctrl-title">FILTROS</h3>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="brightness-slider">BRILLO</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="brightness-slider" min="0" max="1" value="1" step="0.1">
+                  <input type="range" id="brightness-slider" data-type="brightness" data-unit="" min="0" max="1" value="1" step="0.1">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="opacity-slider">OPACIDAD</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="opacity-slider" min="0" max="1" value="1" step="0.1">
+                  <input type="range" id="opacity-slider" data-type="opacity" data-unit="%" min="0" max="1" value="1" step="0.1">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="contrast-slider">CONTRASTE</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="contrast-slider" min="100" max="1000" value="100">
+                  <input type="range" id="contrast-slider" data-type="contrast" data-unit="%" min="100" max="1000" value="100">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="blur-slider">DESENFOQUE</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="blur-slider" min="0" max="10" value="0" step="0.1">
+                  <input type="range" id="blur-slider" data-type="blur" data-unit="%" min="0" max="10" value="0" step="0.1">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="grayscale-slider">ESCALA DE GRISES</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="grayscale-slider" min="0" max="100" value="0">
+                  <input type="range" id="grayscale-slider" data-type="grayscale" data-unit="%" min="0" max="100" value="0">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="sepia-slider">SEPIA</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="sepia-slider" min="0" max="100" value="0">
+                  <input type="range" id="sepia-slider" data-type="sepia" data-unit="%" min="0" max="100" value="0">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="hue-slider">HUE</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="hue-slider" min="0" max="360" value="0">
+                  <input type="range" id="hue-slider" data-type="hue-rotate" min data-unit="deg" min="0" max="360" value="0">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="saturaste-slider">SATURADO</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="saturate-slider" min="100" max="1000" value="100" step="10">
+                  <input type="range" id="saturate-slider" data-type="saturate" data-unit="%" min="100" max="1000" value="100" step="10">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="invert-slider">NEGATIVO</label>
+                  <span class="Panel-ctrl-slider-value">0</span>
                   <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="invert-slider" min="0" max="1" value="0" step="0.1">
+                  <input type="range" id="invert-slider" data-type="invert" data-unit="%" min="0" max="1" value="0" step="0.1">
                 </div>
-              </div>
+            </div>
             <button class="btn">Restalecer filtros</button>
         </section>
         <!--Ajustes del Texto-->
         <section class="App-Sidebar-Panel  d-none" id="Text-Panel">
             <h2 class="Panel-title">Texto</h2>
+            <!--Texo superior-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">superior</label>
                 <textarea class="Panel-ctrl-input" name="top-text" placeholder="Texto superior"></textarea>
@@ -134,6 +147,7 @@
                     <input type="checkbox" name="seleccionar"><span>Sin texto superior</span>
                 </div>
             </div>
+            <!--Texo inferior-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">inferior</label>
                 <textarea class="recuadro" name="button-text" placeholder="Texto inferior"></textarea><br>
@@ -141,6 +155,7 @@
                     <input type="checkbox" name="seleccionar"><span>Sin texto inferior</span>
                 </div>
             </div>
+            <!-- Seleccionar fuente-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">fuente</label>
                 <select class="recuadro" name="fuente">
@@ -155,6 +170,7 @@
                     <option value="Times New Roman">Times New Roman</option>
                 </select>
             </div>
+            <!--Tamaño de fuente y alineado-->
             <div class="Panel-ctrls">
                 <div class="Panel-ctrl" id="fonts">
                     <input name="font-size" type="number">
@@ -165,20 +181,21 @@
                     <button class="btn alin"><i class="fas fa-align-right"></i></button>
                 </div>
             </div>
+            <!--Seleccionar colores-->
             <div class="Panel-ctrl">
                 <div class="Panel-ctrls">
                     <div class="Panel-ctrl">
                         <label class="Panel-ctrl-title">color</label>
                         <div class="color">
-                            <input  type="color" id="select-color-text">
-                            <span id="selected-text-color"></span>
+                            <input type="color" id="select-color-text" data-info="#selected-text-color">
+                            <span id="selected-text-color" aria-hidden="true">#FFFFFF</span>
                         </div>
                     </div>
                     <div class="Panel-ctrl">
                         <label class="Panel-ctrl-title">fondo</label>
                         <div class="color">
-                            <input type="color" id="select-bgcolor-text">
-                            <span id="selected-bgtext-color"></span>
+                            <input type="color" id="select-bgcolor-text" data-info="#selected-bgtext-color">
+                            <span id="selected-bgtext-color" aria-hidden="true">#FFFFFF</span>
                         </div>
                     </div>
                 </div>
@@ -186,6 +203,7 @@
                     <input class="transparent" type="checkbox" name="seleccionar">Fondo transparente
                 </div>
             </div>
+            <!--Contorno-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">contorno</label>
                 <div class="Panel-ctrls width-for-3">
@@ -194,13 +212,22 @@
                     <button class="btn">Oscuro</button>
                 </div>
             </div>
+            <!--Espaciado-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">espaciado</label>
                 <input class="recuadro" type="number">
             </div>
+            <!--Interlineado-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">interlineado</label>
-                <input class="recuadro" type="number">
+                <select id="line-height-input" aria-label="Interlineado">
+                    <option value="0.8">0.8</option>
+                    <option value="1">1</option>
+                    <option value="1.2" selected="">1.2</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                  </select>
             </div>
         </section>
     </aside>
