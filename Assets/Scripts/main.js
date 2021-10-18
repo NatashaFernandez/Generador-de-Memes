@@ -3,6 +3,7 @@ const TEXT_PANEL_ID = 'Text-Panel'
 const DARK_THEME_CLASS = 'DarkTheme';
 const ThemeToggler = document.querySelector("#App-Theme-TogglerBtn");
 const ImgPanelToggler = document.querySelector("#Img-Panel-TogglerBtn");
+const UrlImageBtn = document.querySelector("#input-url");
 const ResetFiltersBtn = document.querySelector("#resetFiltersBtn");
 const TextPanelToggler = document.querySelector("#Text-Panel-TogglerBtn");
 const ClosePanelBtn = document.querySelector("#App-Sidebar-CloseBtn");
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", _ => {
     TextPanelToggler.onclick = _ => openPanel(TEXT_PANEL_ID);
     ImgPanelToggler.onclick = _ => openPanel(IMG_PANEL_ID);
     ResetFiltersBtn.onclick = _ => setFiltersDefault();
+    UrlImageBtn.oninput = e => setImageMeme(e.target.value);
     ClosePanelBtn.onclick = closePanel;
     ThemeToggler.onclick = toogleTheme;
     Sliders.forEach(Slider =>{
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", _ => {
 });
 
 /**
- * Mostrar el panel indicado en el targetPanel
+ * Mostrar el panel indicado en el targetPanel y poner en foco el boton de cierre
  * @param {string} targetPanel id del panel a mostrar
  */
 const openPanel = targetPanel => {
@@ -42,18 +44,35 @@ const openPanel = targetPanel => {
         case IMG_PANEL_ID: 
             TextPanel.classList.add('d-none');
             ImgPanel.classList.remove('d-none');
+            ImgPanel.focus();
+            AppSidebar.dataset.currentPanel = IMG_PANEL_ID;
             break;
 
         case TEXT_PANEL_ID: 
             ImgPanel.classList.add('d-none');
             TextPanel.classList.remove('d-none');
+            TextPanel.focus();
+            AppSidebar.dataset.currentPanel = TEXT_PANEL_ID;
             break;
 
         default:break;
     }
+
+    ClosePanelBtn.focus();
 }
 
-const closePanel = () => AppSidebar.classList.add('d-none');
+/**
+ * Cerrar el panel y devolver el foco al toggler que lo abrio
+ */
+const closePanel = () => {
+    AppSidebar.classList.add('d-none');
+
+    switch (AppSidebar.dataset.currentPanel) {
+        case TEXT_PANEL_ID: TextPanelToggler.focus(); break;
+        default:
+        case IMG_PANEL_ID: ImgPanelToggler.focus(); break;
+    }
+}
 
 const toogleTheme = () =>{
     const Icon = ThemeToggler.querySelector('.btn-Icon');
@@ -77,15 +96,21 @@ const toogleTheme = () =>{
 /**
  * Setea el filtro en la imagen e informa el valor del input y su unidad
  * @param {Element} Slider elemento slider del panel de imagen
+ * @todo la propiedad style.filter no queda alterada
  */
 const setFilter = (Slider) => {
     
     updateFilterInfo(Slider);
     
     //establecer filtros en la imagen
-    image.style.filter  = getFilters();
+    let newfilters = getFilters();
+    image.style.filter = `${newfilters}`;
 }
 
+/**
+ * Recorre cada filtro y pone su valor por default guardado en su data "default"
+ * @todo la propiedad style.filter no queda alterada
+ */
 const setFiltersDefault = () => {
 
     Sliders.forEach(Slider => {
@@ -120,6 +145,12 @@ const getFilters = () => {
 const setColor = e => {
     let SelectedColorInfo = document.querySelector(e.target.dataset.info);
     SelectedColorInfo.textContent = `${e.target.value}`;
+}
+
+const setImageMeme = (URL) => {
+
+    if(URL)
+        image.style.backgroundImage = `url("${URL}")`;
 }
 
 function updateFilterInfo(Slider) {

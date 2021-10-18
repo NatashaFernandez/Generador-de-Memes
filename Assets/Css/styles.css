@@ -323,5 +323,14 @@ div.color{
   width: 100%;
   height: 100%;
   max-width: 610px;
-  background-color: rgb(199, 255, 44);
+}
+
+.App-Canvas-Image{
+
+  max-width: 620px;
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-size: contain;
 }
