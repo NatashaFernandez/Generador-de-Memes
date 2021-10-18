@@ -3,6 +3,7 @@ const TEXT_PANEL_ID = 'Text-Panel'
 const DARK_THEME_CLASS = 'DarkTheme';
 const ThemeToggler = document.querySelector("#App-Theme-TogglerBtn");
 const ImgPanelToggler = document.querySelector("#Img-Panel-TogglerBtn");
+const ResetFiltersBtn = document.querySelector("#resetFiltersBtn");
 const TextPanelToggler = document.querySelector("#Text-Panel-TogglerBtn");
 const ClosePanelBtn = document.querySelector("#App-Sidebar-CloseBtn");
 const Sliders = document.querySelectorAll("input[id$=-slider]");
@@ -17,10 +18,16 @@ document.addEventListener("DOMContentLoaded", _ => {
     
     TextPanelToggler.onclick = _ => openPanel(TEXT_PANEL_ID);
     ImgPanelToggler.onclick = _ => openPanel(IMG_PANEL_ID);
+    ResetFiltersBtn.onclick = _ => setFiltersDefault();
     ClosePanelBtn.onclick = closePanel;
     ThemeToggler.onclick = toogleTheme;
-    Sliders.forEach(Slider => Slider.oninput = e => setFilter(e));
+    Sliders.forEach(Slider =>{
+        Slider.oninput = e => setFilter(e.target);
+        Slider.onchange = e => setFilter(e.target);
+    } );
     ColorSetters.forEach(Setter => Setter.oninput = e=> setColor(e));
+
+    setFiltersDefault();
 });
 
 /**
@@ -69,24 +76,41 @@ const toogleTheme = () =>{
 
 /**
  * Setea el filtro en la imagen e informa el valor del input y su unidad
- * @param {Event} e evento disparado desde un input del tipo range
+ * @param {Element} Slider elemento slider del panel de imagen
  */
-const setFilter = e => {
+const setFilter = (Slider) => {
     
-    let fill = e.target.parentElement.querySelector(".bar .fill");
-    let SliderValueInfo =  e.target.parentElement.querySelector(".Panel-ctrl-slider-value")
-
-    //obtener porcentaje del input y Setear width del fill
-    let range = e.target.max - e.target.min;
-    let correctedStartValue = e.target.value - e.target.min;
-    let widthPercentage = (correctedStartValue * 100) / range;
-    fill.style.width = `${widthPercentage}%`;
-
-    //indicar valor del input
-    SliderValueInfo.textContent = `${e.target.value}${e.target.dataset.unit}`;
-
+    updateFilterInfo(Slider);
+    
     //establecer filtros en la imagen
     image.style.filter  = getFilters();
+}
+
+const setFiltersDefault = () => {
+
+    Sliders.forEach(Slider => {
+
+        Slider.value = Slider.dataset.default;
+        updateFilterInfo(Slider);
+    })
+
+    image.style.filter = getFilters();
+}
+
+/**
+ * obtiene un string con todos los valores actuales de los filtros
+ * @returns {string} 
+ */
+const getFilters = () => {
+
+    let cssTextFilters = "";
+    Sliders.forEach(Filter => {
+
+        let value = ` ${Filter.dataset.type}(${Filter.value}${Filter.dataset.unit})`;
+        cssTextFilters += value;
+    });
+
+    return cssTextFilters.trimStart();
 }
 
 /**
@@ -98,14 +122,20 @@ const setColor = e => {
     SelectedColorInfo.textContent = `${e.target.value}`;
 }
 
-const getFilters = () => {
+function updateFilterInfo(Slider) {
 
-    let cssTextFilters = "";
-    Sliders.forEach(Filter => {
+    //indicar valor del input
+    let SliderValueInfo = Slider.parentElement.querySelector(".Panel-ctrl-slider-value");
+    SliderValueInfo.textContent = `${Slider.value}${Slider.dataset.unit}`;
 
-        let value = ` ${Filter.dataset.type}(${Filter.value}${Filter.dataset.unit})`;
-        cssTextFilters += value;
-    });
+    //obtener porcentaje del valor del input
+    let range = Slider.max - Slider.min;
+    let correctedStartValue = Slider.value - Slider.min;
+    let widthPercentage = (correctedStartValue * 100) / range;
+    let newWith = parseInt(widthPercentage);
 
-    return cssTextFilters.trimStart();
+    //Setear el background image
+    Slider.style.backgroundImage = `linear-gradient(to right,
+         var(--Theme-BgColor--OnActive) ${newWith}%,
+         var(--Theme-CtrlBgColor) ${newWith}%)`;
 }

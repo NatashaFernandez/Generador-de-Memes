@@ -243,24 +243,6 @@ select:focus{
   position: relative;
 }
 
-.Panel-ctrl-slider .bar{
-  position: absolute;
-  z-index: 1;
-  left: 2px;
-  width: 100%;
-  height: 6px;
-  border-radius: 5px;
-  background-color: var(--Theme-BgColor);
-  overflow: hidden;
-}
-
-.Panel-ctrl-slider .bar .fill{
-  display: block;
-  width: 10%;
-  height: 100%;
-  background-color: var(--Theme-BgColor--OnActive);
-}
-
 .Panel-ctrl-slider-value{
   position: absolute;
   right: 0;
@@ -270,13 +252,16 @@ select:focus{
 }
 
 input[id$="-slider"]{
+  margin: 0;
+  padding: 0;
   height: 5px;
-  z-index: 2;
-  position: relative;
-  top: -7px;
   border:none;
   appearance: none;
+  transform: translateY(-10px);
   background-color: transparent;
+  background-image: linear-gradient(to right,
+    var(--Theme-BgColor--OnActive) 0%,
+    var(--Theme-CtrlBgColor) 0%);
 }
 
 input[type='range']::-webkit-slider-thumb {
@@ -284,7 +269,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: var(--Theme-BgColor--OnActive);
+  background: var(--Theme-BgColor--OnHover);
   cursor: pointer;
 	transition: .3s ease-in-out;
 }

@@ -82,59 +82,50 @@
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="brightness-slider">BRILLO</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="brightness-slider" data-type="brightness" data-unit="" min="0" max="1" value="1" step="0.1">
+                  <input type="range" id="brightness-slider" data-default="1" data-type="brightness" data-unit="" min="0" max="1" value="1" step="0.1">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="opacity-slider">OPACIDAD</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="opacity-slider" data-type="opacity" data-unit="%" min="0" max="1" value="1" step="0.1">
+                  <input type="range" id="opacity-slider" data-default="1" data-type="opacity" data-unit="" min="0" max="1" value="1" step="0.1">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="contrast-slider">CONTRASTE</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="contrast-slider" data-type="contrast" data-unit="%" min="100" max="1000" value="100">
+                  <input type="range" id="contrast-slider" data-default="100" data-type="contrast" data-unit="%" min="100" max="1000" value="100">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="blur-slider">DESENFOQUE</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="blur-slider" data-type="blur" data-unit="%" min="0" max="10" value="0" step="0.1">
+                  <input type="range" id="blur-slider" data-default="0" data-type="blur" data-unit="%" min="0" max="10" value="0" step="0.1">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="grayscale-slider">ESCALA DE GRISES</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="grayscale-slider" data-type="grayscale" data-unit="%" min="0" max="100" value="0">
+                  <input type="range" id="grayscale-slider" data-default="0" data-type="grayscale" data-unit="%" min="0" max="100" value="0">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="sepia-slider">SEPIA</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="sepia-slider" data-type="sepia" data-unit="%" min="0" max="100" value="0">
+                  <input type="range" id="sepia-slider" data-default="0" data-type="sepia" data-unit="%" min="0" max="100" value="0">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="hue-slider">HUE</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="hue-slider" data-type="hue-rotate" min data-unit="deg" min="0" max="360" value="0">
+                  <input type="range" id="hue-slider" data-default="0" data-type="hue-rotate" min data-unit="deg" min="0" max="359" value="0">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="saturaste-slider">SATURADO</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="saturate-slider" data-type="saturate" data-unit="%" min="100" max="1000" value="100" step="10">
+                  <input type="range" id="saturate-slider" data-default="100" data-type="saturate" data-unit="%" min="100" max="1000" value="100" step="10">
                 </div>
                 <div class="Panel-ctrl-slider">
                   <label class="Panel-ctrl-title" for="invert-slider">NEGATIVO</label>
                   <span class="Panel-ctrl-slider-value">0</span>
-                  <span class="bar"><span class="fill"></span></span>
-                  <input type="range" id="invert-slider" data-type="invert" data-unit="%" min="0" max="1" value="0" step="0.1">
+                  <input type="range" id="invert-slider" data-default="1" data-type="invert" data-unit="" min="0" max="1" value="0" step="0.1">
                 </div>
             </div>
-            <button class="btn">Restalecer filtros</button>
+            <button class="btn" id="resetFiltersBtn">Restalecer filtros</button>
         </section>
         <!--Ajustes del Texto-->
         <section class="App-Sidebar-Panel  d-none" id="Text-Panel">
