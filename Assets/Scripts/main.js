@@ -1,6 +1,13 @@
 const IMG_PANEL_ID = 'Img-Panel';
 const TEXT_PANEL_ID = 'Text-Panel'
 const DARK_THEME_CLASS = 'DarkTheme';
+const BLEND_MODE_ID = '#selected-blendmode-color';
+const TEXT_COLOR_ID = '#selected-text-color'
+const BGTEXT_COLOR_ID = '#selected-bgtext-color';
+
+const TextAreaCtrls = document.querySelectorAll("textarea");
+const CanvasTopText = document.querySelector(".App-Canvas-TopText");
+const CanvasBottomText = document.querySelector(".App-Canvas-BottomText");
 const ThemeToggler = document.querySelector("#App-Theme-TogglerBtn");
 const ImgPanelToggler = document.querySelector("#Img-Panel-TogglerBtn");
 const UrlImageBtn = document.querySelector("#input-url");
@@ -139,12 +146,31 @@ const getFilters = () => {
 }
 
 /**
- * Setea el color seleccionado e informa el valor hex
+ * Setea el color seleccionado, informa el valor hex
  * @param {Event} e evento disparado desde un input de tipo color
  */
 const setColor = e => {
-    let SelectedColorInfo = document.querySelector(e.target.dataset.info);
-    SelectedColorInfo.textContent = `${e.target.value}`;
+
+    let TargetInfo = e.target.dataset.info;
+    let ColorValue = e.target.value;
+    let SelectedColorInfo = document.querySelector(TargetInfo);
+
+    SelectedColorInfo.textContent = ColorValue.toUpperCase();
+
+    switch (TargetInfo) {
+        case BLEND_MODE_ID: image.style.backgroundColor = ColorValue; break;
+
+        case BGTEXT_COLOR_ID: 
+            CanvasTopText.style.backgroundColor = ColorValue;
+            CanvasBottomText.style.backgroundColor = ColorValue;
+        break;
+
+        case TEXT_COLOR_ID: 
+            CanvasTopText.style.color = ColorValue;
+            CanvasBottomText.style.color = ColorValue;
+        break;
+        default:
+    }
 }
 
 const setImageMeme = (URL) => {
