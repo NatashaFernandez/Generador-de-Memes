@@ -96,20 +96,18 @@ const toogleTheme = () =>{
 /**
  * Setea el filtro en la imagen e informa el valor del input y su unidad
  * @param {Element} Slider elemento slider del panel de imagen
- * @todo la propiedad style.filter no queda alterada
  */
 const setFilter = (Slider) => {
     
     updateFilterInfo(Slider);
-    
+
     //establecer filtros en la imagen
     let newfilters = getFilters();
-    image.style.filter = `${newfilters}`;
+    image.style.filter = newfilters;
 }
 
 /**
  * Recorre cada filtro y pone su valor por default guardado en su data "default"
- * @todo la propiedad style.filter no queda alterada
  */
 const setFiltersDefault = () => {
 
@@ -119,7 +117,9 @@ const setFiltersDefault = () => {
         updateFilterInfo(Slider);
     })
 
-    image.style.filter = getFilters();
+    //establecer filtros en la imagen
+    let newfilters = getFilters();
+    image.style.filter = newfilters;
 }
 
 /**
