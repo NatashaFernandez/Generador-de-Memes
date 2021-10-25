@@ -5,7 +5,7 @@ const BLEND_MODE_ID = '#selected-blendmode-color';
 const TEXT_COLOR_ID = '#selected-text-color'
 const BGTEXT_COLOR_ID = '#selected-bgtext-color';
 
-const TextAreaCtrls = document.querySelectorAll("textarea");
+const TextCtrls = document.querySelectorAll("textarea[data-location],input[data-location]");
 const CanvasTopText = document.querySelector(".App-Canvas-TopText");
 const CanvasBottomText = document.querySelector(".App-Canvas-BottomText");
 const ThemeToggler = document.querySelector("#App-Theme-TogglerBtn");
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", _ => {
         Slider.onchange = e => setFilter(e.target);
     } );
     ColorSetters.forEach(Setter => Setter.oninput = e=> setColor(e));
+    TextCtrls.forEach(TextCtrl => TextCtrl.oninput = e => setText(e.target));
 
     setFiltersDefault();
 });
@@ -149,6 +150,7 @@ const getFilters = () => {
  * Setea el color seleccionado, informa el valor hex
  * @param {Event} e evento disparado desde un input de tipo color
  */
+
 const setColor = e => {
 
     let TargetInfo = e.target.dataset.info;
@@ -177,6 +179,25 @@ const setImageMeme = (URL) => {
 
     if(URL)
         image.style.backgroundImage = `url("${URL}")`;
+}
+
+/**
+ * Establecer las propiedades de los textos superiores e inferiores,
+ * si es del tipo textarea se establecera el textContent y si es del tipo checkbox se definira su display
+ * @param {Element} TextCtrl Control del panel de texto con un data-location que defina si se aplica a un Top o un Bottom Text
+ */
+const setText = TextCtrl => {
+
+    const {location} = TextCtrl.dataset;
+    let CanvasText = document.querySelector(`.App-Canvas-${location}Text`);
+
+    //si es del tipo textarea se quiere establecer el valor del texto
+    if(TextCtrl.type === 'textarea')
+        CanvasText.textContent = TextCtrl.value;
+
+    //si es un control de tipo checkbox se quiere usar o no su texto
+    if(TextCtrl.type === 'checkbox')
+        CanvasText.style.display = TextCtrl.checked ? 'none':'block';
 }
 
 function updateFilterInfo(Slider) {
