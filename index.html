@@ -23,7 +23,7 @@
                 <i class="fas fa-font btn-Icon" aria-hidden="true"></i>Texto
             </button>
             <button class="btn" id="App-Theme-TogglerBtn" aria-label="Cambiar a modo claro">
-                <i class="far fa-lightbulb btn-Icon" aria-hidden="true"></i>Modo claro
+                <i class="far fa-lightbulb btn-Icon" aria-hidden="true"></i><span>Modo Claro</span>
             </button>
         </nav>
     </header>
@@ -160,7 +160,7 @@
             <!-- Seleccionar fuente-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">fuente</label>
-                <select class="recuadro" name="fuente">
+                <select class="recuadro" name="fuente" value="Arial" data-default="Arial">
                     <option value="Arial">Arial</option>
                     <option value="Arial Black">Arial Black</option>
                     <option value="American Typewriter">American Typewriter</option>
@@ -175,12 +175,18 @@
             <!--Tamaño de fuente y alineado-->
             <div class="Panel-ctrls">
                 <div class="Panel-ctrl" id="fonts">
-                    <input name="font-size" type="number">
+                    <input name="font-size" type="number" value="14" data-default="14">
                 </div>
-                <div class="Panel-ctrls width-for-3" id="aligments">
-                    <button class="btn alin"><i class="fas fa-align-left"></i></button>
-                    <button class="btn alin"><i class="fas fa-align-justify"></i></button>
-                    <button class="btn alin"><i class="fas fa-align-right"></i></button>
+                <div class="Panel-ctrls" id="aligments">
+                    <label for="left" class="btn"><i class="fas fa-align-left"></i>
+                        <input type="radio" id="left" name="alig">
+                    </label>
+                    <label for="justify" class="btn"><i class="fas fa-align-justify"></i>
+                        <input type="radio" id="justify" name="alig" checked>
+                    </label>
+                    <label for="right" class="btn"><i class="fas fa-align-right"></i>
+                        <input type="radio" id="right" name="alig">
+                    </label>
                 </div>
             </div>
             <!--Seleccionar colores-->
@@ -202,22 +208,28 @@
                     </div>
                 </div>
                 <div class="Panel-ctrl-option">
-                    <input class="transparent" type="checkbox" name="seleccionar">Fondo transparente
+                    <input type="checkbox" id="transparentOption" data-info="#selected-bgtext-color">Fondo transparente
                 </div>
             </div>
             <!--Contorno-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">contorno</label>
-                <div class="Panel-ctrls width-for-3">
-                    <button class="btn">Ninguno</button>
-                    <button class="btn">Claro</button>
-                    <button class="btn">Oscuro</button>
+                <div class="Panel-ctrls">
+                    <label for="none" class="btn">Ninguno
+                        <input type="radio" id="none" name="contorno" checked>
+                    </label>
+                    <label for="white" class="btn">Claro
+                        <input type="radio" id="white" name="contorno">
+                    </label>
+                    <label for="black" class="btn">Oscuro
+                        <input type="radio" id="black" name="contorno">
+                    </label>
                 </div>
             </div>
             <!--Espaciado-->
             <div class="Panel-ctrl">
                 <label class="Panel-ctrl-title">espaciado</label>
-                <input class="recuadro" type="number">
+                <input class="recuadro" type="number" value="7">
             </div>
             <!--Interlineado-->
             <div class="Panel-ctrl">
