@@ -21,6 +21,7 @@ const TextPanel = document.querySelector(`#${TEXT_PANEL_ID}`);
 const ImgPanel = document.querySelector(`#${IMG_PANEL_ID}`);
 const body = document.querySelector("body");
 const image = document.querySelector(".App-Canvas-Image");
+const FontSetter = document.querySelector('select[name=fuente]');
 
 document.addEventListener("DOMContentLoaded", _=> {
     
@@ -30,12 +31,10 @@ document.addEventListener("DOMContentLoaded", _=> {
     UrlImageBtn.oninput = e=> setImageMeme(e.target.value);
     ClosePanelBtn.onclick = closePanel;
     ThemeToggler.onclick = toogleTheme;
-    Sliders.forEach(Slider =>{
-        Slider.oninput = e=> setFilter(e.target);
-        Slider.onchange = e=> setFilter(e.target);
-    });
+    Sliders.forEach(Slider => Slider.oninput = e=> setFilter(e.target));
     ColorSetters.forEach(ColorSetter => ColorSetter.oninput = e=> setColor(e.target));
     TextCtrls.forEach(TextCtrl => TextCtrl.oninput = e=> setText(e.target));
+    FontSetter.oninput = e => setFont(e.target);
 
     setFiltersDefault();
     setColorsDefult();
@@ -112,12 +111,8 @@ const setFiltersDefault = () => {
     Sliders.forEach(Slider => {
 
         Slider.value = Slider.dataset.default;
-        updateFilterInfo(Slider);
+        setFilter(Slider);
     })
-
-    //establecer filtros en la imagen
-    let newfilters = getFilters();
-    image.style.filter = newfilters;
 }
 
 /** obtiene un string con todos los valores actuales de los filtros
@@ -143,7 +138,7 @@ const setColor = ColorSetter => {
     let ColorValue = getColorFrom(ColorSetter);
 
     switch (TargetInfo) {
-        case BLEND_MODE_ID: image.style.backgroundColor = ColorValue; break;
+        case BLEND_MODE_ID: image.parentElement.style.backgroundColor = ColorValue; break;
         case BGTEXT_COLOR_ID:
                 CanvasTopText.style.backgroundColor = ColorValue;
                 CanvasBottomText.style.backgroundColor = ColorValue;
@@ -242,6 +237,17 @@ const setText = TextCtrl => {
     //si es un control de tipo checkbox se quiere usar o no su texto
     if(TextCtrl.type === 'checkbox')
         CanvasText.style.display = TextCtrl.checked ? 'none':'block';
+}
+
+/** Establecer las propiedades de los textos superiores e inferiores,
+ * Setea la fuente, y una fuente en caso de que la seleccionada falle
+ * @param {Element} TextCtrl Control del panel de texto con un data-location que defina si se aplica a un Top o un Bottom Text
+ */
+const setFont = TextCtrl => {
+
+    const font = `"${TextCtrl.value}", "${TextCtrl.dataset.default}"`;
+    CanvasTopText.style.fontFamily = font;
+    CanvasBottomText.style.fontFamily = font;
 }
 
 const updateFilterInfo = Slider => {

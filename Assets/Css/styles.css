@@ -144,6 +144,7 @@ body{
 
 /*---------- SIDEBAR PANEL CONTROLS --------------------*/
 .App-Sidebar-Panel{
+  user-select: none;
   padding-top: 50px;
 }
 
@@ -350,6 +351,7 @@ div.color{
   max-width: 610px;
 }
 .App-Canvas-Image{
+  background-color: black;
   max-width: 620px;
   background-repeat: no-repeat;
   background-size: contain;
@@ -357,4 +359,12 @@ div.color{
 }
 .App-Canvas-TopText, .App-Canvas-BottomText {
   overflow-wrap: anywhere;
+}
+div#background-meme {
+  aspect-ratio: 774/547;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  transform: translateY(18px);
+  overflow: hidden;
 }
