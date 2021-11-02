@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", _=> {
     });
     ColorSetters.forEach(ColorSetter => ColorSetter.oninput = e=> setColor(e.target));
     TextCtrls.forEach(TextCtrl => TextCtrl.oninput = e=> setText(e.target));
-    //window.onresize = e => image.style.height = `${image.parentElement.getBoundingClientRect().width}px`;
 
     setFiltersDefault();
+    setColorsDefult();
 });
 
 /** Mostrar el panel indicado en el targetPanel y poner en foco el boton de cierre
@@ -158,6 +158,22 @@ const setColor = ColorSetter => {
     updateSelectedColorInfo(TargetInfo, ColorValue);
 }
 
+const setColorsDefult = () => {
+
+    ColorSetters.forEach(ColorSetter => {
+
+        switch (ColorSetter.type) {
+            case 'color': 
+                ColorSetter.value = ColorSetter.dataset.default;
+                setColor(ColorSetter);
+                break;
+            case 'checkbox': 
+                ColorSetter.checked = false;
+            default:
+        }
+    })
+}
+
 const getColorFrom = ColorSetter => {
 
     let NextColorValue = '';
@@ -176,6 +192,10 @@ const getColorFrom = ColorSetter => {
     return NextColorValue;
 }
 
+/** Recibe la ULR de una img y la intenta cargar en el canvas, 
+ *  Luego llama a setear la relacion de aspecto de la img
+ * @param {URL} URL 
+ */
 const setImageMeme = (URL) => {
 
     if(URL){
@@ -189,13 +209,21 @@ const setImageMeme = (URL) => {
     }
 }
 
+/**  En base a un alto y un ancho establece el aspecto de radio del meme
+ * @param {Number} ImgHeight Alto de la imagen a cargar
+ * @param {Number} ImgWidth Ancho de la imagen a cargar
+ */
 const setAspectRatio = (ImgHeight, ImgWidth) => {
-
     const Divisor = GetDivisor(ImgWidth, ImgHeight);
-
     image.style.aspectRatio = `${ImgWidth/Divisor}/${ImgHeight/Divisor}`;
 }
 
+/**
+ * Calcula de forma recursiva el máximo común divisor a usar en el calculo del aspect-radio
+ * @param {Number} a alto/ancho de la img
+ * @param {Number} b alto/ancho de la img
+ * @returns {Number} Divisor
+ */
 const GetDivisor = (a, b) => b ? GetDivisor(b, a % b): a
 
 /** Establecer las propiedades de los textos superiores e inferiores,

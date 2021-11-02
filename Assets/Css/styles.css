@@ -5,7 +5,7 @@
   --App-PrimaryBtn-BgColor: #3aa03f;
   --App-PrimaryBtn-Color: white;
   /*-----------LIGHT THEME-----------------------------*/
-  --Theme-TextColor: black;
+  --Theme-TextColor: #000000;
   --Theme-AppBgColor: #d8d8d8;
   --Theme-AppSidebarBgColor: #f6f6f6;
   --Theme-BgColor: white;
@@ -349,10 +349,12 @@ div.color{
   width: calc(100vw - (50% - 110px));
   max-width: 610px;
 }
-
 .App-Canvas-Image{
   max-width: 620px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+.App-Canvas-TopText, .App-Canvas-BottomText {
+  overflow-wrap: anywhere;
 }

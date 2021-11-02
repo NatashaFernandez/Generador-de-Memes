@@ -59,8 +59,8 @@
                     <div class="Panel-ctrl">
                         <label class="Panel-ctrl-title">Fondo</label>
                         <div class="color">
-                            <input type="color" value="#FFFFFF" data-info="#selected-blendmode-color">
-                            <span id="selected-blendmode-color" aria-hidden="true">#FFFFFF</span>
+                            <input type="color" data-default="#000000" data-info="#selected-blendmode-color">
+                            <span id="selected-blendmode-color" aria-hidden="true">#000000</span>
                         </div>
                     </div>
                     <div class="Panel-ctrl">
@@ -175,7 +175,7 @@
             <!--Tamaño de fuente y alineado-->
             <div class="Panel-ctrls">
                 <div class="Panel-ctrl" id="fonts">
-                    <input name="font-size" type="number" value="14" data-default="14">
+                    <input name="font-size" type="number" value="14" data-default="14" min="14" max="56">
                 </div>
                 <div class="Panel-ctrls" id="aligments">
                     <label for="left" class="btn"><i class="fas fa-align-left"></i>
@@ -195,14 +195,14 @@
                     <div class="Panel-ctrl">
                         <label class="Panel-ctrl-title">color</label>
                         <div class="color">
-                            <input type="color" id="select-color-text" data-info="#selected-text-color">
-                            <span id="selected-text-color" aria-hidden="true">#FFFFFF</span>
+                            <input type="color" id="select-color-text" data-default="#000000" data-info="#selected-text-color">
+                            <span id="selected-text-color" aria-hidden="true">#000000</span>
                         </div>
                     </div>
                     <div class="Panel-ctrl">
                         <label class="Panel-ctrl-title">fondo</label>
                         <div class="color">
-                            <input type="color" id="select-bgcolor-text" data-info="#selected-bgtext-color">
+                            <input type="color" id="select-bgcolor-text" data-default="#FFFFFF" data-info="#selected-bgtext-color">
                             <span id="selected-bgtext-color" aria-hidden="true">#FFFFFF</span>
                         </div>
                     </div>
